@@ -1,0 +1,149 @@
+html,
+body {
+	width: 100%;
+	height: 100%;
+	font-family: "Montserrat", serif;
+}
+
+.app {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: url("https://cdn.yoavik.com/codepen/ios-notifications/background.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.add-button {
+	background-color: #0284c7;
+	color: white;
+	border: none;
+	border-radius: 2rem;
+	padding: 0.8rem 1.2rem 0.8rem 0.8rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.2s ease-out;
+	font-size: 1.2rem;
+	box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.1), 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+.add-button:hover {
+	background-color: #0ea5e9;
+	transform: translateY(-0.1rem);
+	box-shadow: 0 0.3rem 0.2rem rgba(0, 0, 0, 0.1), 0 0.6rem 1rem rgba(0, 0, 0, 0.3);
+}
+.add-button:hover svg {
+	transform: rotate(90deg);
+}
+.add-button:active {
+	transition: all 0.1s ease-out;
+	transform: translateY(0rem);
+}
+.add-button svg {
+	transition: transform 0.3s ease-out;
+	margin-right: 0.3rem;
+	font-size: 1.5rem;
+}
+
+.notifications {
+	--width: 20rem;
+	--height: 4.5rem;
+	--gap: 1rem;
+	position: fixed;
+	bottom: 0;
+	pointer-events: none;
+}
+.notifications:hover .notification {
+	transform: translateY(0) scale(1);
+}
+.notifications:hover .notification .notification-inner {
+	opacity: 1;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+.notifications:hover .notification.exit-active {
+	transform: translateY(0) scale(0.5);
+}
+.notifications:hover .notification.exit-active .notification-inner {
+	background-color: white !important;
+}
+.notifications .notification {
+	display: flex;
+	transform: translateY(var(--y)) scale(var(--scale));
+	transform-origin: center;
+	transition: all var(--duration) ease-in-out;
+	pointer-events: auto;
+}
+.notifications .notification.enter {
+	transform: translateY(100%) scale(1);
+	margin-bottom: calc((var(--height) + var(--gap)) * -1);
+}
+.notifications .notification.enter-active {
+	transform: translateY(var(--y)) scale(var(--scale));
+	margin-bottom: 0;
+}
+.notifications .notification.exit-active {
+	transform: translateY(calc(var(--y) - 10%)) scale(calc(var(--scale) - 0.1));
+	margin-bottom: calc((var(--height) + var(--gap)) * -1);
+}
+.notifications .notification.exit-active .notification-inner {
+	opacity: 0;
+}
+.notifications .notification-inner {
+	background-color: var(--bg);
+	-webkit-backdrop-filter: blur(0.5rem);
+	backdrop-filter: blur(0.5rem);
+	padding: 0 1rem;
+	border-radius: 0.5rem;
+	width: var(--width);
+	height: var(--height);
+	margin-bottom: var(--gap);
+	opacity: var(--opacity);
+	transition: all var(--duration) ease-in-out;
+	display: flex;
+	align-items: center;
+}
+.notifications .notification-inner h2 {
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+.notifications .notification-inner p {
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+}
+.notifications .notification-inner .close {
+	background: none;
+	border: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 0.8rem;
+	padding: 0.5rem;
+	cursor: pointer;
+	display: flex;
+}
+.notifications .notification-inner .icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 0.3rem;
+	margin-right: 1rem;
+	font-size: 1rem;
+	color: white;
+}
+.notifications .notification-inner .icon.error {
+	background-color: #f87171;
+}
+.notifications .notification-inner .icon.success {
+	background-color: #10b981;
+}
+.notifications .notification-inner .icon.info {
+	background-color: #60a5fa;
+}
+.notifications .notification-inner .icon.warning {
+	background-color: #f59e0b;
+}
